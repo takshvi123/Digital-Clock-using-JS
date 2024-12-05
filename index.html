@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+    
+            font-family: Arial, sans-serif;
+    
+            display: flex;
+    
+            justify-content: center;
+    
+            align-items: center;
+    
+            height: 100vh;
+    
+            margin: 60px;
+    
+            background-color: #282c34;
+    
+            color: #61dafb;
+    
+        }
+    
+        .Clock {
+    
+            font-size: 4rem;
+            margin: 50px;
+    
+        }
+       
+    </style>
+    
+</head>
+<body>
+    <h1>Digital Clock using JS</h1>
+    <div class="Clock">
+
+    </div>
+
+
+
+    <script>
+        function updatetime()
+        
+        {
+             var now = new Date();
+            
+            var hours = String(now.getHours()).padStart(2,'0');
+            var minutes = String(now.getMinutes()).padStart(2, '0');
+            var seconds = String(now.getSeconds()).padStart(2, '0');
+           document.querySelector('.Clock').textContent = `${hours}:${minutes}:${seconds}`;
+        }
+       setInterval(updatetime,1000);
+       updatetime();
+    </script>
+</body>
+</html>
