@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock and Date</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        h1,
+        h2 {
+            margin: 10px;
+        }
+
+        .clock,
+        .date {
+            font-size: 24px;
+            margin: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Today Calendar and Digital Clock</h1>
+    <div class="date" id="date"></div>
+    <div class="clock" id="time"></div>
+    <script>
+        function updateDateTime() {
+            const now = new Date();
+
+            // Get current date details
+            const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+            const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+            const day = days[now.getDay()];
+            const date = now.getDate();
+            const month = months[now.getMonth()];
+            const year = now.getFullYear();
+
+            // Get current time details
+            const hours = now.getHours().toString().padStart(2, '0');
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            const seconds = now.getSeconds().toString().padStart(2, '0');
+
+            // Update date and time in HTML
+            document.getElementById("date").innerHTML = `Today is: ${day}, ${date} ${month} ${year}`;
+            document.getElementById("time").innerHTML = `Current Time: ${hours}:${minutes}:${seconds}`;
+        }
+
+        // Update date and time every second
+        setInterval(updateDateTime, 1000);
+        updateDateTime(); // Initial call
+    </script>
+</body>
+
+</html>

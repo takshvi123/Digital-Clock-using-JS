@@ -1,62 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-
+    <title>Digital Clock with Day and Night</title>
     <style>
         body {
-    
-            font-family: Arial, sans-serif;
-    
             display: flex;
-    
             justify-content: center;
-    
             align-items: center;
-    
             height: 100vh;
-    
-            margin: 60px;
-    
-            background-color: #282c34;
-    
-            color: #61dafb;
-    
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            transition: background-color 1s;
         }
-    
-        .Clock {
-    
-            font-size: 4rem;
-            margin: 50px;
-    
-        }
-       
-    </style>
-    
-</head>
-<body>
-    <h1>Digital Clock using JS</h1>
-    <div class="Clock">
 
+        #clock {
+            font-size: 48px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            position: relative;
+            text-align: center;
+        }
+
+        #icon {
+            position: absolute;
+            top: -40px;
+            right: -40px;
+            font-size: 60px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="clock">
+        <div id="time">00:00:00</div>
+        <div id="icon">🌞</div>
     </div>
 
-
-
     <script>
-        function updatetime()
-        
-        {
-             var now = new Date();
-            
-            var hours = String(now.getHours()).padStart(2,'0');
-            var minutes = String(now.getMinutes()).padStart(2, '0');
-            var seconds = String(now.getSeconds()).padStart(2, '0');
-           document.querySelector('.Clock').textContent = `${hours}:${minutes}:${seconds}`;
+        function updateClock() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            const timeString = `${hours}:${minutes}:${seconds}`;
+            document.getElementById('time').textContent = timeString;
+
+            const icon = document.getElementById('icon');
+
+            // Change background color and icon based on time of day
+            if (hours >= 6 && hours < 18) {
+                document.body.style.backgroundColor = '#87CEEB'; // Day (sky blue)
+                icon.textContent = '🌞'; // Sun icon
+            } else {
+                document.body.style.backgroundColor = '#2C3E50'; // Night (dark blue)
+                icon.textContent = '🌜'; // Moon icon
+            }
         }
-       setInterval(updatetime,1000);
-       updatetime();
+
+        setInterval(updateClock, 1000);
+        updateClock(); // Initial call to display the clock immediately
     </script>
 </body>
+
 </html>
